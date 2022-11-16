@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 const Hero = () => {
   return (
     <div>
@@ -11,9 +13,11 @@ const Hero = () => {
           Improve revenue by adding your business in Neaby app. Connect your
           business to the customers
         </p>
-        <button className="bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto py-3">
-          Get Started
-        </button>
+        <Link to="/signin">
+          <button className="bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto py-3">
+            Get Started
+          </button>
+        </Link>
       </div>
     </div>
   );

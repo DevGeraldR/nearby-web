@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Ads = () => {
   return (
@@ -14,9 +15,11 @@ const Ads = () => {
             Nearby will be the most largest navigation app in the Phillipines.
             We aim to guide your customers to find your location
           </p>
-          <button className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3">
-            Get Started
-          </button>
+          <Link to="/signin">
+            <button className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3">
+              Get Started
+            </button>
+          </Link>
         </div>
       </div>
     </div>

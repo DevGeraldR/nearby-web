@@ -2,6 +2,7 @@ import React from "react";
 import Single from "../../assets/single.png";
 import Double from "../../assets/double.png";
 import Triple from "../../assets/triple.png";
+import { Link } from "react-router-dom";
 
 const Pricing = () => {
   return (
@@ -16,9 +17,11 @@ const Pricing = () => {
             <p className="py-2 border-b mx-8">Reach Customer</p>
             <p className="py-2 border-b mx-8">1 month free trial</p>
           </div>
-          <button className="bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3">
-            Start Trial
-          </button>
+          <Link to="/signin" className="mx-auto">
+            <button className="bg-[#00df9a] w-[200px] rounded-md font-medium my-6 px-6 py-3">
+              Start Trial
+            </button>
+          </Link>
         </div>
         <div className="w-full shadow-xl bg-[#ddead1] flex flex-col p-4 md:my-0 my-8 rounded-lg hover:scale-105 duration-300">
           <img className="w-20 mx-auto mt-[-3rem]" src={Triple} alt="/" />
@@ -33,9 +36,11 @@ const Pricing = () => {
             </p>
             <p className="py-2 border-b mx-8">1 month free trial</p>
           </div>
-          <button className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3">
-            Start Trial
-          </button>
+          <Link to="/signin" className="mx-auto">
+            <button className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3">
+              Start Trial
+            </button>
+          </Link>
         </div>
         <div className="w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300">
           <img
@@ -54,9 +59,11 @@ const Pricing = () => {
             </p>
             <p className="py-2 border-b mx-8">1 month free trial</p>
           </div>
-          <button className="bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3">
-            Start Trial
-          </button>
+          <Link to="/signin" className="mx-auto">
+            <button className="bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3">
+              Start Trial
+            </button>
+          </Link>
         </div>
       </div>
     </div>
