@@ -1,174 +1,87 @@
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { Link } from "react-router-dom";
-
-import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "../firebase/firebase";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
-  const [street, setStreet] = useState("");
-  const [city, setCity] = useState("");
-  const [province, setProvince] = useState("");
-  const [contactNumber, setContactNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [photo] = useState("");
 
-  const SignupUser = () => {
+  const { signUp } = useAuth();
+
+  const handleClick = () => {
     //To create the new user in our firebase authentication
     //Then update the user data to save the user photoURL
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((authUser) => {
-        const user = authUser.user;
-        updateProfile(user, {
-          displayName: name,
-          photoURL:
-            photo ||
-            "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
-        }).catch((error) => {
-          alert(error.message);
-        });
-        //To send the user information in our database
-        try {
-          setDoc(doc(db, "Users", name), {
-            name: name,
-            street: street,
-            city: city,
-            province: province,
-            contactNumber: contactNumber,
-            email: email,
-            admin: false,
-            photoURL:
-              photo ||
-              "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
-          });
-        } catch (e) {
-          console.error("Error adding document: ", e);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (password !== confirmPassword) {
+      alert("Password Don't Match");
+      return;
+    }
+    signUp(name, photo, email, password);
+    navigate("/");
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <Box component="form" noValidate sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="Full Name"
-                value={name}
-                onChange={(event) => {
-                  setName(event.target.value);
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="Street"
-                value={street}
-                onChange={(event) => {
-                  setStreet(event.target.value);
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="City"
-                value={city}
-                onChange={(event) => {
-                  setCity(event.target.value);
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="Province"
-                value={province}
-                onChange={(event) => {
-                  setProvince(event.target.value);
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="Contact Number"
-                value={contactNumber}
-                onChange={(event) => {
-                  setContactNumber(event.target.value);
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="Email"
-                value={email}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="Password"
-                value={password}
-                onChange={(event) => {
-                  setPassword(event.target.value);
-                }}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            onClick={SignupUser}
+    <div className="flex h-screen w-full justify-center">
+      <div className="flex flex-col m-auto">
+        <form className="max-w-[400px] w-full mx-auto rounded-lg border-solid border-2 border-black p-8 px-8">
+          <h2 className="text-4xl dark:text-[#00df9a] font-bold text-center">
+            SIGN UP
+          </h2>
+          <div className="flex flex-col py-2">
+            <label>Full Name</label>
+            <input
+              className="rounded-lg border-solid border-2 border-gray-400 mt-2 p-2 focus:border-black focus:outline-none"
+              type="text"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            />
+          </div>
+          <div className="flex flex-col py-2">
+            <label>Email</label>
+            <input
+              className="rounded-lg border-solid border-2 border-gray-400 mt-2 p-2 focus:border-black focus:outline-none"
+              type="text"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </div>
+          <div className="flex flex-col py-2">
+            <label>Password</label>
+            <input
+              className="rounded-lg border-solid border-2 border-gray-400 mt-2 p-2 focus:border-black focus:outline-none"
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+          <div className="flex flex-col py-2">
+            <label>Confirm Password</label>
+            <input
+              className="rounded-lg border-solid border-2 border-gray-400 mt-2 p-2 focus:border-black focus:outline-none"
+              type="password"
+              value={confirmPassword}
+              onChange={(event) => setConfirmPassword(event.target.value)}
+            />
+          </div>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              handleClick();
+            }}
+            className="w-full my-5 py-2 bg-[#00df9a] text-white font-semibold rounded-lg"
           >
-            Sign Up
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link to="/signin">Already have an account? Sign in</Link>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-    </Container>
+            SIGNIN
+          </button>
+        </form>
+        <div className="pl-2">
+          <Link to="/signin">Already have an account?</Link>
+        </div>
+      </div>
+    </div>
   );
 }
 

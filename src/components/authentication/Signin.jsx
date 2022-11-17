@@ -1,98 +1,63 @@
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { Link } from "react-router-dom";
-
-import { auth } from "../firebase/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Signin() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { signIn } = useAuth();
 
   //To sign in the user it uses firebase authentication
-  const signIn = () => {
-    signInWithEmailAndPassword(auth, email, password).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-    });
+  const handleClick = () => {
+    signIn(email, password);
+    navigate("/");
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Box component="form" noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
+    <div className="flex h-screen w-full justify-center">
+      <div className="flex flex-col m-auto">
+        <form className="max-w-[400px] w-full mx-auto rounded-lg border-solid border-2 border-black p-8 px-8">
+          <h2 className="text-4xl dark:text-[#00df9a] font-bold text-center">
+            SIGN IN
+          </h2>
+          <div className="flex flex-col py-2">
+            <label>Email</label>
+            <input
+              className="rounded-lg border-solid border-2 border-gray-400 mt-2 p-2 focus:border-black focus:outline-none"
+              type="text"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </div>
+          <div className="flex flex-col py-2">
+            <label>Password</label>
+            <input
+              className="rounded-lg border-solid border-2 border-gray-400 mt-2 p-2 focus:border-black focus:outline-none"
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+          <div className="flex justify-between py-2">
+            <p>Forgot Password</p>
+          </div>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              handleClick();
             }}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            onClick={signIn}
+            className="w-full my-5 py-2 bg-[#00df9a] text-white font-semibold rounded-lg"
           >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link to="/signup">Don't have an account? Sign Up</Link>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-    </Container>
+            SIGNIN
+          </button>
+        </form>
+        <div className="pl-2">
+          <Link to="/signup">Don't have an account?</Link>
+        </div>
+      </div>
+    </div>
   );
 }
 
