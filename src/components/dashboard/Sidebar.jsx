@@ -51,7 +51,10 @@ export default function Sidebar() {
         </div>
       </div>
       {/* For Phone */}
-      <span onClick={handleClickSideBar} className="block md:hidden p-4">
+      <span
+        onClick={handleClickSideBar}
+        className="block md:hidden p-5 absolute"
+      >
         <AiOutlineMenu size={20} />
       </span>
 
