@@ -11,7 +11,7 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [photo] = useState("");
 
-  const { signUp } = useAuth();
+  const { signUp, currentUser } = useAuth();
 
   const handleClick = async () => {
     //To create the new user in our firebase authentication
@@ -21,14 +21,16 @@ function Signup() {
       return;
     }
     await signUp(name, photo, email, password);
-    navigate("/");
+    if (currentUser) {
+      navigate("/");
+    }
   };
 
   return (
     <div className="flex h-screen w-full justify-center">
       <div className="flex flex-col m-auto">
         <form className="max-w-[400px] w-full mx-auto rounded-lg border-solid border-2 border-black p-8 px-8">
-          <h2 className="text-4xl dark:text-[#00df9a] font-bold text-center">
+          <h2 className="text-4xl text-[#00df9a] font-bold text-center">
             SIGN UP
           </h2>
           <div className="flex flex-col py-2">

@@ -32,8 +32,8 @@ const Footer = () => {
         <div>
           <h6 className="font-medium">Support</h6>
           <ul>
-            <li className="py-2 text-sm">Pricing</li>
             <li className="py-2 text-sm">Guides</li>
+            <li className="py-2 text-sm">Community</li>
           </ul>
         </div>
         <div>
@@ -46,7 +46,6 @@ const Footer = () => {
         <div>
           <h6 className="font-medium">Legal</h6>
           <ul>
-            <li className="py-2 text-sm">Claim</li>
             <li className="py-2 text-sm">Policy</li>
             <li className="py-2 text-sm">Terms</li>
           </ul>

@@ -7,19 +7,21 @@ function Signin() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signIn } = useAuth();
+  const { signIn, currentUser } = useAuth();
 
   //To sign in the user it uses firebase authentication
   const handleClick = async () => {
     await signIn(email, password);
-    navigate("/");
+    if (currentUser) {
+      navigate("/");
+    }
   };
 
   return (
     <div className="flex h-screen w-full justify-center">
       <div className="flex flex-col m-auto">
         <form className="max-w-[400px] w-full mx-auto rounded-lg border-solid border-2 border-black p-8 px-8">
-          <h2 className="text-4xl dark:text-[#00df9a] font-bold text-center">
+          <h2 className="text-4xl text-[#00df9a] font-bold text-center">
             SIGN IN
           </h2>
           <div className="flex flex-col py-2">

@@ -4,11 +4,9 @@ import { useAuth } from "./context/AuthContext";
 export const PrivateRoute = () => {
   const { currentUser, isLoading } = useAuth();
 
-  return isLoading ? (
-    <h1>Loading...</h1>
-  ) : currentUser ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/welcome" />
-  );
+  if (isLoading) {
+    return null; //might add screen loading here when opening the web
+  }
+
+  return currentUser ? <Outlet /> : <Navigate to="/welcome" />;
 };
