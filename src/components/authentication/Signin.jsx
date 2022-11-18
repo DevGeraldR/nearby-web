@@ -10,8 +10,8 @@ function Signin() {
   const { signIn } = useAuth();
 
   //To sign in the user it uses firebase authentication
-  const handleClick = () => {
-    signIn(email, password);
+  const handleClick = async () => {
+    await signIn(email, password);
     navigate("/");
   };
 

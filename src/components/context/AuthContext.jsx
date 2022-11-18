@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useEffect, useState } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -16,31 +16,29 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
-  const [from, setFrom] = useState("");
+  const [currentUser, setCurrentUser] = useState(); // undifined
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+      setIsLoading(false);
     });
     return unsubscribe;
   }, []);
 
-  async function signIn(email, password) {
+  const signIn = async (email, password) => {
     try {
-      setFrom("signIn");
       return await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
+      alert(error.message);
     }
-  }
+  };
 
-  async function signUp(name, photo, email, password) {
+  const signUp = async (name, photo, email, password) => {
+    //To create the new user in our firebase authentication
+    //Then update the user data to save the user photoURL
     try {
-      setFrom("signUp");
       const authUser = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -66,25 +64,24 @@ export function AuthProvider({ children }) {
             "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
         });
       } catch (e) {
-        console.error("Error adding document: ", e);
+        alert("Error adding document: ", e);
       }
     } catch (error_1) {
-      console.log(error_1);
+      alert(error_1.message);
     }
-  }
+  };
 
-  async function logOut() {
+  const logOut = async () => {
     try {
-      setFrom("");
       return await signOut(auth);
     } catch (error) {
-      console.log(error);
+      alert(error.message);
     }
-  }
+  };
 
   const value = {
     currentUser,
-    from,
+    isLoading,
     signIn,
     signUp,
     logOut,

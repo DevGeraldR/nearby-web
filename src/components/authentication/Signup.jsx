@@ -13,14 +13,14 @@ function Signup() {
 
   const { signUp } = useAuth();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     //To create the new user in our firebase authentication
     //Then update the user data to save the user photoURL
     if (password !== confirmPassword) {
       alert("Password Don't Match");
       return;
     }
-    signUp(name, photo, email, password);
+    await signUp(name, photo, email, password);
     navigate("/");
   };
 

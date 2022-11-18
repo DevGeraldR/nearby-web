@@ -4,8 +4,8 @@ import { useAuth } from "../context/AuthContext";
 function Dashboard() {
   const { logOut } = useAuth();
 
-  function handleClick() {
-    logOut();
+  async function handleClick() {
+    await logOut();
   }
 
   return (
