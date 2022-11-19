@@ -8,7 +8,6 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { AuthenticatedRoute } from "./components/AuthenticatedRoute";
 import Home from "./components/dashboard/Home";
 import AddPlace from "./components/dashboard/AddPlace";
-import ApplyAdmin from "./components/dashboard/ApplyAdmin";
 import EditPlace from "./components/dashboard/EditPlace";
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route exact path="/" element={<Home />}>
               <Route index element={<AddPlace />} />
-              <Route path="/applyadmin" element={<ApplyAdmin />} />
               <Route path="/editPlace" element={<EditPlace />} />
             </Route>
           </Route>

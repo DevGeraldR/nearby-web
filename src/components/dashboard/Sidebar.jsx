@@ -32,7 +32,7 @@ export default function Sidebar() {
         <div className="flex flex-col gap-0.5 pt-2 border-t border-neutral-700">
           <div
             className={
-              "cursor-pointer text-red-500 flex items-center gap-2 font-light px-3 py-2 hover:bg-[#f5f5f5] hover:no-underline active:bg-white rounded-sm text-base"
+              "cursor-pointer text-red-500 flex items-center gap-2 font-light px-3 py-2 hover:bg-[#e2e2e2] hover:no-underline active:bg-white rounded-sm text-base"
             }
             onClick={handleClick}
           >
@@ -77,7 +77,7 @@ export default function Sidebar() {
         <div className="flex flex-col gap-0.5 pt-2 border-t border-neutral-700">
           <div
             className={
-              "cursor-pointer text-red-500 flex items-center gap-2 font-light px-3 py-2 hover:bg-[#f5f5f5] hover:no-underline active:bg-white rounded-sm text-base"
+              "cursor-pointer text-red-500 flex items-center gap-2 font-light px-3 py-2 hover:bg-[#e2e2e2] hover:no-underline active:bg-white rounded-sm text-base"
             }
             onClick={handleClick}
           >
