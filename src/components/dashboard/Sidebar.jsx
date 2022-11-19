@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { FcAddDatabase } from "react-icons/fc";
+import { Link, useLocation } from "react-router-dom";
 import { HiOutlineLogout } from "react-icons/hi";
 import { useAuth } from "../context/AuthContext";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu, AiOutlineEdit } from "react-icons/ai";
+import { DASHBOARD_SIDEBAR_LINKS } from "../lib/constants";
 
 export default function Sidebar() {
   const { logOut } = useAuth();
   const [openSideBar, setOpenSideBar] = useState(false);
-
   const handleClick = async () => {
     await logOut().catch((error) => alert(error));
   };
@@ -26,15 +25,9 @@ export default function Sidebar() {
           </h1>
         </div>
         <div className="py-8 flex flex-1 flex-col gap-0.5">
-          <Link
-            to="/"
-            className="flex items-center gap-2 font-light px-3 py-2 hover:bg-[#f5f5f5] hover:no-underline active:bg-white rounded-sm text-base"
-          >
-            <span className="text-xl">
-              <FcAddDatabase />
-            </span>
-            Add Hospital
-          </Link>
+          {DASHBOARD_SIDEBAR_LINKS.map((link) => (
+            <SidebarLink key={link.key} link={link} />
+          ))}
         </div>
         <div className="flex flex-col gap-0.5 pt-2 border-t border-neutral-700">
           <div
@@ -73,16 +66,13 @@ export default function Sidebar() {
             <AiOutlineClose size={20} onClick={handleClickSideBar} />
           </div>
         </div>
-        <div className="py-8 flex flex-1 flex-col gap-0.5">
-          <Link
-            to="/"
-            className="flex items-center gap-2 font-light px-3 py-2 hover:bg-[#f5f5f5] hover:no-underline active:bg-white rounded-sm text-base"
-          >
-            <span className="text-xl">
-              <FcAddDatabase />
-            </span>
-            Add Hospital
-          </Link>
+        <div
+          className="py-8 flex flex-1 flex-col gap-0.5"
+          onClick={handleClickSideBar}
+        >
+          {DASHBOARD_SIDEBAR_LINKS.map((link) => (
+            <SidebarLink key={link.key} link={link} />
+          ))}
         </div>
         <div className="flex flex-col gap-0.5 pt-2 border-t border-neutral-700">
           <div
@@ -99,5 +89,23 @@ export default function Sidebar() {
         </div>
       </div>
     </div>
+  );
+}
+
+function SidebarLink({ link }) {
+  const { pathname } = useLocation();
+
+  return (
+    <Link
+      to={link.path}
+      className={
+        pathname === link.path
+          ? " bg-[#f5f5f5] flex items-center gap-2 font-light px-3 py-2 hover:bg-white hover:no-underline active:bg-white rounded-sm text-base"
+          : "flex items-center gap-2 font-light px-3 py-2 hover:bg-[#e2e2e2] hover:no-underline active:bg-white rounded-sm text-base"
+      }
+    >
+      <span className="text-xl">{link.icon}</span>
+      {link.label}
+    </Link>
   );
 }

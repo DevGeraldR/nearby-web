@@ -6,8 +6,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./components/context/AuthContext";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { AuthenticatedRoute } from "./components/AuthenticatedRoute";
-import AddHospital from "./components/dashboard/AddHospital";
 import Home from "./components/dashboard/Home";
+import AddPlace from "./components/dashboard/AddPlace";
+import ApplyAdmin from "./components/dashboard/ApplyAdmin";
+import EditPlace from "./components/dashboard/EditPlace";
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
           </Route>
           <Route element={<PrivateRoute />}>
             <Route exact path="/" element={<Home />}>
-              <Route index element={<AddHospital />} />
+              <Route index element={<AddPlace />} />
+              <Route path="/applyadmin" element={<ApplyAdmin />} />
+              <Route path="/editPlace" element={<EditPlace />} />
             </Route>
           </Route>
         </Routes>

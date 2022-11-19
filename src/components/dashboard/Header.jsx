@@ -32,8 +32,13 @@ export default function Header() {
                     <strong className="text-gray-700 font-medium">
                       Messages
                     </strong>
-                    <div className="mt-2 py-1 text-sm">
-                      This is messages panel.
+                    <div
+                      onClick={() => {
+                        alert("Inside message");
+                      }}
+                      className="mt-2 py-1 text-sm hover:bg-gray-100 cursor-pointer"
+                    >
+                      This is messages.
                     </div>
                   </div>
                 </Popover.Panel>
