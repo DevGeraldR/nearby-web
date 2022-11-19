@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div>
+    <div className="bg-[#ebf2f3]">
       <div className="max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
         <h1 className="md:text-7xl sm:text-6xl text-4xl font-bold md:py-6">
           Grow your business
@@ -14,7 +14,7 @@ const Hero = () => {
           business to the customers
         </p>
         <Link to="/signin">
-          <button className="bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto py-3">
+          <button className="bg-[#00dfad] w-[200px] rounded-md font-medium my-6 mx-auto py-3 hover:bg-[#00df9a]">
             Get Started
           </button>
         </Link>

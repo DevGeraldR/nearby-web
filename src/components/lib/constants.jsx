@@ -1,17 +1,16 @@
-import { AiOutlineEdit } from "react-icons/ai";
-import { GrChapterAdd } from "react-icons/gr";
+import { FcPlus, FcSettings } from "react-icons/fc";
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key: "addPlace",
     label: "Add Place",
     path: "/",
-    icon: <GrChapterAdd />,
+    icon: <FcPlus />,
   },
   {
     key: "editPlace",
     label: "Edit Place",
     path: "/editPlace",
-    icon: <AiOutlineEdit />,
+    icon: <FcSettings />,
   },
 ];

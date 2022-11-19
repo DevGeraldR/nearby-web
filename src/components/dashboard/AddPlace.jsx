@@ -6,12 +6,12 @@ import { db } from "../firebase/firebase";
 function AddPlace() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   const [adminName, setAdminName] = useState("");
   const [adminEmail, setAdminEmail] = useState("");
-  const [contactNumber, setContactNumber] = useState("");
   const [lat, setLat] = useState(null);
   const [long, setLong] = useState(null);
   const geolocationAPI = navigator.geolocation;
@@ -69,10 +69,8 @@ function AddPlace() {
 
   return (
     <div className="flex h-full w-full justify-center">
-      <form className="md:w-[400px] m-auto lg:w-[800px] max-w-[800px] rounded-lg border-solid border-2 border-black p-8 justify-center">
-        <h2 className="text-4xl text-[#00df9a] font-bold text-center">
-          Add Place
-        </h2>
+      <form className="md:w-[400px] m-2 lg:w-[800px] max-w-[800px] justify-center">
+        <h2 className="text-2xl font-bold text-center">Add Place</h2>
         <div className="flex flex-col py-2">
           <label>Name</label>
           <input
@@ -133,7 +131,7 @@ function AddPlace() {
               e.preventDefault();
               addPlace();
             }}
-            className="w-[200px] my-5 py-2 bg-[#00df9a] text-white font-semibold rounded-lg"
+            className="w-[200px] my-5 py-2 bg-[#00dfad] font-semibold rounded-lg"
           >
             Add
           </button>

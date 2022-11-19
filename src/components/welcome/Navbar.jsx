@@ -10,25 +10,25 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4">
-      <h1 className="w-full text-3xl font-bold text-[#00df9a]">NEARBY</h1>
+      <h1 className="w-full text-3xl font-bold">NEARBY</h1>
       <ul className="hidden md:flex">
         <li className="p-4">Home</li>
         <li className="p-4">About</li>
         <li className="p-4">Contact</li>
       </ul>
-      <div onClick={handleNav} className="block md:hidden cursor-pointer">
+      <div onClick={handleNav} className="md:hidden cursor-pointer pb-1">
         {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
       </div>
       <ul
         className={
           nav
-            ? "fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500 text-white md:hidden"
+            ? "fixed left-0 top-0 w-[60%] h-full bg-black text-white ease-in-out duration-500 md:hidden"
             : "fixed left-[-100%]"
         }
       >
-        <h1 className="w-full text-3xl font-bold text-[#00df9a] m-4">NEARBY</h1>
-        <li className="p-4 border-b border-gray-600">Home</li>
-        <li className="p-4 border-b border-gray-600">About</li>
+        <h1 className="w-full text-3xl font-bold text-[#00dfad] m-4">NEARBY</h1>
+        <li className="p-4">Home</li>
+        <li className="p-4">About</li>
         <li className="p-4">Contact</li>
       </ul>
     </div>

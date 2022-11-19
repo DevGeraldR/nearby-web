@@ -5,13 +5,13 @@ function EditPlace() {
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
+  const [email, setEmail] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
 
   return (
     <div className="flex h-full w-full justify-center">
-      <form className="h-[90%] md:w-[400px] m-auto lg:w-[800px] max-w-[800px] rounded-lg border-solid border-2 border-black p-8 justify-center">
-        <h2 className="text-4xl text-[#00df9a] font-bold text-center">
-          Edit Place
-        </h2>
+      <form className="md:w-[400px] m-2 lg:w-[800px] max-w-[800px] justify-center">
+        <h2 className="text-2xl font-bold text-center">Edit Place</h2>
         <div className="flex flex-col py-2">
           <label>Enter New Name</label>
           <input
@@ -19,6 +19,24 @@ function EditPlace() {
             type="text"
             value={name}
             onChange={(event) => setName(event.target.value)}
+          />
+        </div>
+        <div className="flex flex-col py-2">
+          <label>Enter New Email</label>
+          <input
+            className="rounded-lg border-solid border-2 border-gray-400 mt-2 p-2 focus:border-black focus:outline-none"
+            type="text"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </div>
+        <div className="flex flex-col py-2">
+          <label>Enter New Contact Number</label>
+          <input
+            className="rounded-lg border-solid border-2 border-gray-400 mt-2 p-2 focus:border-black focus:outline-none"
+            type="text"
+            value={contactNumber}
+            onChange={(event) => setContactNumber(event.target.value)}
           />
         </div>
         <div className="flex flex-col py-2">
@@ -53,7 +71,7 @@ function EditPlace() {
             onClick={(e) => {
               e.preventDefault();
             }}
-            className="w-[200px] my-5 py-2 bg-[#00df9a] text-white font-semibold rounded-lg"
+            className="w-[200px] my-5 py-2 bg-[#00dfad] font-semibold rounded-lg"
           >
             Edit
           </button>

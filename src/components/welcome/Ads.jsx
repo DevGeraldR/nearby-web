@@ -16,7 +16,7 @@ const Ads = () => {
             We aim to guide your customers to find your location
           </p>
           <Link to="/signin">
-            <button className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3">
+            <button className="bg-black text-[#00dfad] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3 hover:bg-[#4a4a4a]">
               Get Started
             </button>
           </Link>

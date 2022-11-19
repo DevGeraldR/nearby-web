@@ -27,12 +27,10 @@ function Signup() {
   };
 
   return (
-    <div className="flex h-screen w-full justify-center">
+    <div className="bg-[#ebf2f3] flex h-screen w-full justify-center">
       <div className="flex flex-col m-auto">
         <form className="max-w-[400px] w-full mx-auto rounded-lg border-solid border-2 border-black p-8 px-8">
-          <h2 className="text-4xl text-[#00df9a] font-bold text-center">
-            SIGN UP
-          </h2>
+          <h2 className="text-4xl font-bold text-center">SIGN UP</h2>
           <div className="flex flex-col py-2">
             <label>Full Name</label>
             <input
@@ -74,12 +72,12 @@ function Signup() {
               e.preventDefault();
               handleClick();
             }}
-            className="w-full my-5 py-2 bg-[#00df9a] text-white font-semibold rounded-lg"
+            className="w-full my-5 py-2 bg-[#00dfad] font-semibold rounded-lg hover:bg-[#00df9a]"
           >
-            SIGNIN
+            Sign Up
           </button>
         </form>
-        <div className="pl-2">
+        <div className="pl-2 text-[#0077b6] hover:text-[#00b4d8]">
           <Link to="/signin">Already have an account?</Link>
         </div>
       </div>

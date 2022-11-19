@@ -7,7 +7,7 @@ import Sidebar from "./Sidebar";
 
 function Home() {
   return (
-    <div className="bg-neutral-100 h-screen w-screen flex flex-row">
+    <div className="bg-[#ebf2f3] h-screen w-screen flex flex-row">
       <Sidebar />
       <div className="flex flex-col flex-1 overflow-hidden">
         <Header />
