@@ -9,6 +9,8 @@ import { AuthenticatedRoute } from "./components/AuthenticatedRoute";
 import Home from "./components/dashboard/Home";
 import AddPlace from "./components/dashboard/AddPlace";
 import EditPlace from "./components/dashboard/EditPlace";
+import ApplyAdmin from "./components/dashboard/ApplyAdmin";
+import AddAdmin from "./components/dashboard/AddAdmin";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
             <Route exact path="/" element={<Home />}>
               <Route index element={<AddPlace />} />
               <Route path="/editPlace" element={<EditPlace />} />
+              <Route path="/applyAdmin" element={<ApplyAdmin />} />
+              <Route path="/addAdmin" element={<AddAdmin />} />
             </Route>
           </Route>
         </Routes>
