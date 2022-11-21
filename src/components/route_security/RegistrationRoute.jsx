@@ -1,5 +1,7 @@
-import { Navigate, Outlet } from "react-router-dom";
+// To make sure that the user who is not an admin can't enter the admin dashboard
+// And make the user apply as admin first
 
+import { Navigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
@@ -26,19 +28,27 @@ export const RegistrationRoute = () => {
         } else {
           console.log("No Data Found");
         }
+        // if no current check if it is still fetching the data
       } else if (!authenticating) {
         setCheckingIfAdmin(false);
       }
     })();
   }, [currentUser, authenticating]);
 
-  if (authenticating) {
-    return <h1>Authenticating...</h1>;
+  // To return if still authenticating or fetching data to check if admin
+  // To display Loading
+  if (authenticating || checkingIfAdmin) {
+    return (
+      <div className="flex flex-col gap-2 items-center justify-center h-screen">
+        <div className="w-24 h-24 border-l-2 border-gray-900 rounded-full animate-spin"></div>
+        <span>Please wait...</span>
+      </div>
+    );
   }
 
-  if (checkingIfAdmin) {
-    return <h1>Checking if admin...</h1>;
-  }
+  //Check first if there is a current user if there's none go to welcome
+  //Else check if the current user is an admin if admin direct to the dashboard
+  //Else direct to apply admin page
 
   return currentUser ? (
     isAdmin ? (
