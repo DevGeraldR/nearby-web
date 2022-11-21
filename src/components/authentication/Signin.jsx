@@ -13,7 +13,7 @@ function Signin() {
   const handleClick = async () => {
     await signIn(email, password);
     if (currentUser) {
-      navigate("/");
+      navigate("/applyAdmin");
     }
   };
 

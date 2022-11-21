@@ -27,8 +27,6 @@ function AddAdmin() {
     })();
   }, []);
 
-  console.log(admins);
-
   return (
     <div className="flex flex-col h-screen w-full">
       {admins.map((admin) => (

@@ -1,11 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Header from "./Header";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 // FOR DASHOARD LAYOUT
 
-function Home() {
+function Dashboard() {
   return (
     <div className="bg-[#ebf2f3] h-screen w-screen flex flex-row">
       <Sidebar />
@@ -19,4 +19,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dashboard;

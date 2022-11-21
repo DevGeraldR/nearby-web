@@ -17,12 +17,12 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(); // undifined
-  const [isLoading, setIsLoading] = useState(true);
+  const [authenticating, setIsAuthenticating] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      setIsLoading(false);
+      setIsAuthenticating(false);
     });
     return unsubscribe;
   }, []);
@@ -55,7 +55,7 @@ export function AuthProvider({ children }) {
       });
       //To send the user information in our database
       try {
-        setDoc(doc(db, "Users", name), {
+        setDoc(doc(db, "Users", email), {
           name: name,
           email: email,
           admin: false,
@@ -81,10 +81,10 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
-    isLoading,
     signIn,
     signUp,
     logOut,
+    authenticating,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

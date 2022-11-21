@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiOutlineLogout } from "react-icons/hi";
-import { useAuth } from "../context/AuthContext";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { DASHBOARD_SIDEBAR_LINKS } from "../lib/constants";
+import { DASHBOARD_SIDEBAR_LINKS } from "../../lib/constants";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Sidebar() {
   const { logOut } = useAuth();

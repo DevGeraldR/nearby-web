@@ -4,13 +4,13 @@ import Signup from "./components/authentication/Signup";
 import Welcome from "./components/welcome/Welcome";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./components/context/AuthContext";
-import { PrivateRoute } from "./components/PrivateRoute";
-import { AuthenticatedRoute } from "./components/AuthenticatedRoute";
-import Home from "./components/dashboard/Home";
-import AddPlace from "./components/dashboard/AddPlace";
-import EditPlace from "./components/dashboard/EditPlace";
-import ApplyAdmin from "./components/dashboard/ApplyAdmin";
-import AddAdmin from "./components/dashboard/AddAdmin";
+import { AdminRoute } from "./components/route_security/AdminRoute";
+import { AuthenticatedRoute } from "./components/route_security/AuthenticatedRoute";
+import { RegistrationRoute } from "./components/route_security/RegistrationRoute";
+import Dashboard from "./components/admin_dashboard/layout/Dashboard";
+import AddPlace from "./components/admin_dashboard/AddPlace";
+import EditPlace from "./components/admin_dashboard/EditPlace";
+import ApplyAdmin from "./components/registration/ApplyAdmin";
 
 function App() {
   return (
@@ -22,12 +22,13 @@ function App() {
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
           </Route>
-          <Route element={<PrivateRoute />}>
-            <Route exact path="/" element={<Home />}>
+          <Route element={<RegistrationRoute />}>
+            <Route path="/applyAdmin" element={<ApplyAdmin />} />
+          </Route>
+          <Route element={<AdminRoute />}>
+            <Route exact path="/" element={<Dashboard />}>
               <Route index element={<AddPlace />} />
               <Route path="/editPlace" element={<EditPlace />} />
-              <Route path="/applyAdmin" element={<ApplyAdmin />} />
-              <Route path="/addAdmin" element={<AddAdmin />} />
             </Route>
           </Route>
         </Routes>

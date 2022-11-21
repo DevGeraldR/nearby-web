@@ -22,7 +22,7 @@ function Signup() {
     }
     await signUp(name, photo, email, password);
     if (currentUser) {
-      navigate("/");
+      navigate("/applyAdmin");
     }
   };
 
