@@ -44,7 +44,7 @@ function AddPlace() {
   const addPlace = () => {
     //To send the hospital information in our database
     try {
-      setDoc(doc(db, "Hospitals"), {
+      setDoc(doc(db, "Hospitals", currentUser.email), {
         adminName: adminName,
         adminEmail: adminEmail,
         displayName: name,

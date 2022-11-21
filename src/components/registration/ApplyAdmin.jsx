@@ -34,8 +34,8 @@ function ApplyAdmin() {
   };
 
   return (
-    <div className="flex h-full w-full justify-center">
-      <form className="md:w-[400px] m-2 lg:w-[800px] max-w-[800px] justify-center">
+    <div className="flex h-screen w-screen justify-center bg-[#ebf2f3]">
+      <form className="md:w-[400px] m-2 lg:w-[800px] w-[300px] max-w-[800px] justify-center">
         <h2 className="text-2xl font-bold text-center">Apply Admin</h2>
         <div className="flex flex-col py-2">
           <label>Name</label>
@@ -106,7 +106,7 @@ function ApplyAdmin() {
               e.preventDefault();
               handleClickLogOut();
             }}
-            className="w-[200px] my-5 py-2 bg-[#00dfad] font-semibold rounded-lg"
+            className="w-[200px] my-5 py-2 border border-solid border-black text-[#00dfad] font-semibold rounded-lg"
           >
             Log Out
           </button>

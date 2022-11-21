@@ -11,7 +11,7 @@ export const AuthenticatedRoute = () => {
   // Check if still authenticating then return loading
   if (authenticating) {
     return (
-      <div className="flex flex-col gap-2 items-center justify-center h-screen">
+      <div className="flex flex-col gap-2 items-center justify-center h-screen bg-[#ebf2f3]">
         <div className="w-24 h-24 border-l-2 border-gray-900 rounded-full animate-spin"></div>
         <span>Please wait...</span>
       </div>
