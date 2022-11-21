@@ -1,13 +1,10 @@
-// To make sure that the user who is not an admin can't enter the admin dashboard
-// And make the user apply as admin first
-
 import { Navigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
-export const RegistrationRoute = () => {
+function AdminManagerRoute() {
   const { currentUser, authenticating } = useAuth();
   const [role, setRole] = useState("");
   const [checkingRole, setCheckingRole] = useState(true);
@@ -46,20 +43,17 @@ export const RegistrationRoute = () => {
     );
   }
 
-  // Check first if there's a current user if none
-  // Go to the  welcome it means there it is not log in
-  // Else check if the current user is an admin if admin
-  // Go to dash else go to apply admin
-
   return currentUser ? (
-    role === "admin" ? (
-      <Navigate to="/" />
-    ) : role === "admin-manager" ? (
-      <Navigate to="/addAdmin" />
-    ) : (
+    role === "admin-manager" ? (
       <Outlet />
+    ) : role === "admin" ? (
+      <Navigate to="/" />
+    ) : (
+      <Navigate to="/applyAdmin" />
     )
   ) : (
     <Navigate to="/welcome" />
   );
-};
+}
+
+export default AdminManagerRoute;

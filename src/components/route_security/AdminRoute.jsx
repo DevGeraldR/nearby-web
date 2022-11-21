@@ -9,8 +9,8 @@ import { db } from "../firebase/firebase";
 
 export const AdminRoute = () => {
   const { currentUser, authenticating } = useAuth();
-  const [isAdmin, setIsAdmin] = useState();
-  const [checkingIfAdmin, setCheckingIfAdmin] = useState(true);
+  const [role, setRole] = useState("");
+  const [checkingRole, setCheckingRole] = useState(true);
 
   // Check the if the user is an admin
 
@@ -22,22 +22,22 @@ export const AdminRoute = () => {
         const docRef = doc(db, "Users", currentUser.email);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setIsAdmin(docSnap.data().admin);
+          setRole(docSnap.data().role);
           // After featching of data is successful remove the loading
-          setCheckingIfAdmin(false);
+          setCheckingRole(false);
         } else {
           console.log("No Data Found");
         }
         // if no current check if it is still fetching the data
       } else if (!authenticating) {
-        setCheckingIfAdmin(false);
+        setCheckingRole(false);
       }
     })();
   }, [currentUser, authenticating]);
 
   // To return if still authenticating or fetching data to check if admin
   // To display Loading
-  if (authenticating || checkingIfAdmin) {
+  if (authenticating || checkingRole) {
     return (
       <div className="flex flex-col gap-2 items-center justify-center h-screen bg-[#ebf2f3]">
         <div className="w-24 h-24 border-l-2 border-gray-900 rounded-full animate-spin"></div>
@@ -52,8 +52,10 @@ export const AdminRoute = () => {
   // Go to dash else go to apply admin
 
   return currentUser ? (
-    isAdmin ? (
+    role === "admin" ? (
       <Outlet />
+    ) : role === "admin-manager" ? (
+      <Navigate to="/addAdmin" />
     ) : (
       <Navigate to="/applyAdmin" />
     )

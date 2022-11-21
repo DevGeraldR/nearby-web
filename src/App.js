@@ -11,6 +11,8 @@ import Dashboard from "./components/admin_dashboard/layout/Dashboard";
 import AddPlace from "./components/admin_dashboard/AddPlace";
 import EditPlace from "./components/admin_dashboard/EditPlace";
 import ApplyAdmin from "./components/registration/ApplyAdmin";
+import AdminManagerRoute from "./components/route_security/AdminManagerRoute";
+import AddAdmin from "./components/admin_manager/AddAdmin";
 
 function App() {
   return (
@@ -30,6 +32,9 @@ function App() {
               <Route index element={<AddPlace />} />
               <Route path="/editPlace" element={<EditPlace />} />
             </Route>
+          </Route>
+          <Route element={<AdminManagerRoute />}>
+            <Route path="/addAdmin" element={<AddAdmin />} />
           </Route>
         </Routes>
       </AuthProvider>

@@ -58,7 +58,7 @@ export function AuthProvider({ children }) {
         setDoc(doc(db, "Users", email), {
           name: name,
           email: email,
-          admin: false,
+          role: "user",
           photoURL:
             photo ||
             "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",

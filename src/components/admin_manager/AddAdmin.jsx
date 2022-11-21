@@ -1,9 +1,39 @@
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/firebase";
 
 function AddAdmin() {
   const [admins, setAdmins] = useState([]);
+  const { logOut } = useAuth();
+
+  const handleClickLogOut = async () => {
+    await logOut().catch((error) => alert(error));
+  };
+
+  const handleClickAdd = async (email) => {
+    const userRef = doc(db, "Users", email);
+
+    // To update the role
+    await updateDoc(userRef, {
+      role: "admin",
+    });
+
+    // To delete the admin from the list of requesting admins
+    const adminRef = doc(db, "Requesting Admins", email);
+    await deleteDoc(adminRef);
+
+    //To delete the admin from the admins array to rerender display without the added admin
+    setAdmins(admins.filter((admin) => admin.adminEmail !== email));
+
+    alert("Admins sucessfully added");
+  };
 
   useEffect(() => {
     //To get and store the list of hospital from our database to the variables.
@@ -28,9 +58,12 @@ function AddAdmin() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen w-full">
+    <div className="flex items-center flex-col h-screen w-full bg-[#ebf2f3] overflow-auto">
       {admins.map((admin) => (
-        <div className="mb-2 mt-2 flex flex-row border border-solid p-3 w-full border-black justify-between">
+        <div
+          key={admin.id}
+          className="max-w-[800px] m-2 flex flex-row border border-solid p-3 w-full border-black justify-between"
+        >
           <div>{admin.adminName}</div>
           <div>{admin.adminEmail}</div>
           <div className="flex gap-3">
@@ -45,6 +78,7 @@ function AddAdmin() {
             <button
               onClick={(e) => {
                 e.preventDefault();
+                handleClickAdd(admin.adminEmail);
               }}
               className="w-[100px] py-2 bg-[#00dfad] font-semibold rounded-lg"
             >
@@ -53,6 +87,17 @@ function AddAdmin() {
           </div>
         </div>
       ))}
+      <div className="text-center">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            handleClickLogOut();
+          }}
+          className="w-[200px] my-5 py-2 border border-solid border-black text-[#00dfad] font-semibold rounded-lg"
+        >
+          Log Out
+        </button>
+      </div>
     </div>
   );
 }
