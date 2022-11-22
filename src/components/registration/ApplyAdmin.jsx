@@ -12,10 +12,10 @@ function ApplyAdmin() {
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   //To add the hospital in the database
-  const handleClickapplyAdmin = () => {
+  const handleClickapplyAdmin = async () => {
     //To send the hospital information in our database
     try {
-      setDoc(doc(db, "Requesting Admins", email), {
+      await setDoc(doc(db, "Requesting Admins", email), {
         adminName: name,
         adminEmail: email,
         street: street,
@@ -34,8 +34,8 @@ function ApplyAdmin() {
   };
 
   return (
-    <div className="flex h-screen w-screen justify-center bg-[#ebf2f3]">
-      <form className="md:w-[400px] m-2 lg:w-[800px] w-[300px] max-w-[800px] justify-center">
+    <div className="flex h-full w-full justify-center bg-[#ebf2f3]">
+      <form className="md:w-[400px] m-5 lg:w-[800px] w-[300px] max-w-[800px] justify-center">
         <h2 className="text-2xl font-bold text-center">Apply Admin</h2>
         <div className="flex flex-col py-2">
           <label>Name</label>

@@ -7,14 +7,12 @@ function Signin() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signIn, currentUser } = useAuth();
+  const { signIn } = useAuth();
 
   //To sign in the user it uses firebase authentication
   const handleClick = async () => {
     await signIn(email, password);
-    if (currentUser) {
-      navigate("/applyAdmin");
-    }
+    navigate("/applyAdmin");
   };
 
   return (

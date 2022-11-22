@@ -55,7 +55,7 @@ export function AuthProvider({ children }) {
       });
       //To send the user information in our database
       try {
-        setDoc(doc(db, "Users", email), {
+        await setDoc(doc(db, "Users", email), {
           name: name,
           email: email,
           role: "user",

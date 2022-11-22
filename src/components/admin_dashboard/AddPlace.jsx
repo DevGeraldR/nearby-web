@@ -41,10 +41,10 @@ function AddPlace() {
   }, [currentUser, geolocationAPI]);
 
   //To add the hospital in the database
-  const addPlace = () => {
+  const addPlace = async () => {
     //To send the hospital information in our database
     try {
-      setDoc(doc(db, "Hospitals", currentUser.email), {
+      await setDoc(doc(db, "Hospitals", currentUser.email), {
         adminName: adminName,
         adminEmail: adminEmail,
         displayName: name,

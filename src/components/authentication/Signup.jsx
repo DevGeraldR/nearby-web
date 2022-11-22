@@ -11,7 +11,7 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [photo] = useState("");
 
-  const { signUp, currentUser } = useAuth();
+  const { signUp } = useAuth();
 
   const handleClick = async () => {
     //To create the new user in our firebase authentication
@@ -21,9 +21,7 @@ function Signup() {
       return;
     }
     await signUp(name, photo, email, password);
-    if (currentUser) {
-      navigate("/applyAdmin");
-    }
+    navigate("/applyAdmin");
   };
 
   return (
