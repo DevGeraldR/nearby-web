@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 function Signin() {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +13,10 @@ function Signin() {
   //To sign in the user it uses firebase authentication
   const handleClick = async () => {
     await signIn(email, password);
-    navigate("/applyAdmin");
+    // To not navigate the user to admin page if password or email is wrong
+    if (currentUser) {
+      navigate("/applyAdmin");
+    }
   };
 
   return (

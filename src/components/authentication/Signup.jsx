@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 function Signup() {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +22,10 @@ function Signup() {
       return;
     }
     await signUp(name, photo, email, password);
-    navigate("/applyAdmin");
+    // To not navigate the user to admin page if password or email is wrong
+    if (currentUser) {
+      navigate("/applyAdmin");
+    }
   };
 
   return (
