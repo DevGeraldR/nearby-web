@@ -18,6 +18,7 @@ function AddPlace() {
   const { currentUser } = useAuth();
   // For photo: Not implemented yet
   const [photo] = useState("");
+  const [placeName, setPlaceName] = useState("");
 
   useEffect(() => {
     if (!geolocationAPI) {
@@ -42,9 +43,14 @@ function AddPlace() {
 
   //To add the hospital in the database
   const addPlace = async () => {
+    // To check if the admin selected a place
+    if (placeName === "") {
+      alert("Please select a place");
+      return;
+    }
     //To send the hospital information in our database
     try {
-      await setDoc(doc(db, "Hospitals", currentUser.email), {
+      await setDoc(doc(db, placeName, currentUser.email), {
         adminName: adminName,
         adminEmail: adminEmail,
         displayName: name,
@@ -58,8 +64,7 @@ function AddPlace() {
         //If the user upload a photo use the photo if not use the default profile picture
         //Not yet implemented
         photoURL:
-          photo ||
-          "https://cdn.icon-icons.com/icons2/1465/PNG/512/588hospital_100778.png",
+          photo || "https://cdn-icons-png.flaticon.com/512/1527/1527531.png",
       });
       alert("Displayed Succesfully");
     } catch (e) {
@@ -71,6 +76,15 @@ function AddPlace() {
     <div className="flex h-full w-full justify-center">
       <form className="md:w-[400px] m-2 lg:w-[800px] max-w-[800px] justify-center">
         <h2 className="text-2xl font-bold text-center">Add Place</h2>
+        <div
+          className="flex flex-row gap-2"
+          onChange={(event) => setPlaceName(event.target.value)}
+        >
+          <input type="radio" value="Hospital" name="place" />
+          <span>Hospital</span>
+          <input type="radio" value="Jeepney" name="place" />
+          <span>Jeepney</span>
+        </div>
         <div className="flex flex-col py-2">
           <label>Name</label>
           <input
