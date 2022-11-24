@@ -5,7 +5,7 @@ import {
   onSnapshot,
   updateDoc,
 } from "firebase/firestore";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/firebase";
 
