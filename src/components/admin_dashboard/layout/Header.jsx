@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { FcSms, FcAdvertising } from "react-icons/fc";
+import Messages from "../message/Messages";
 
 export default function Header() {
   return (
@@ -28,16 +29,11 @@ export default function Header() {
                 leaveTo="opacity-0 translate-y-1"
               >
                 <Popover.Panel className="absolute right-0 z-10 mt-2.5 transform md:w-80 w-60">
-                  <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
+                  <div className="bg-white flex flex-col rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
                     <strong className="font-medium">Messages</strong>
-                    <div
-                      onClick={() => {
-                        alert("Inside message");
-                      }}
-                      className="mt-2 py-1 text-sm hover:bg-gray-100 cursor-pointer"
-                    >
-                      This is messages.
-                    </div>
+                    <Popover.Button>
+                      <Messages />
+                    </Popover.Button>
                   </div>
                 </Popover.Panel>
               </Transition>
@@ -68,9 +64,7 @@ export default function Header() {
                 <Popover.Panel className="absolute right-0 z-10 mt-2.5 transform md:w-80 w-60">
                   <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
                     <strong className="font-medium">Notifications</strong>
-                    <div className="mt-2 py-1 text-sm">
-                      This is notification panel.
-                    </div>
+                    <div className="mt-2 py-1 text-sm">No notification</div>
                   </div>
                 </Popover.Panel>
               </Transition>

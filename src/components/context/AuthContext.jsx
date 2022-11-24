@@ -79,9 +79,13 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const value = {
     currentUser,
     signIn,
+    isOpen,
+    setIsOpen,
     signUp,
     logOut,
     authenticating,
