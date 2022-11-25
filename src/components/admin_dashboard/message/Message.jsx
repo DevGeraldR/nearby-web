@@ -118,7 +118,7 @@ function Message() {
   return (
     <div className="bg-white flex flex-col fixed bottom-1 right-0 lg:right-20 h-[90%] w-full lg:h-[400px] lg:w-[320px] justify-between">
       <div className="flex flex-col overflow-hidden">
-        <div className="bg-[#00dfad] flex flex-row ml[-70]  p-[10px] justify-between">
+        <div className="bg-[#87ab69] flex flex-row ml[-70]  p-[10px] justify-between">
           <div className="items-center flex justify-center gap-5 ">
             <img
               className="object-scale-down h-10 w-10"
@@ -156,7 +156,7 @@ function Message() {
             e.preventDefault();
             onSend();
           }}
-          className="w-[20%] bg-[#00dfad]"
+          className="w-[20%] bg-[#87ab69]"
           type="submit"
         >
           Send

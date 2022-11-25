@@ -18,8 +18,8 @@ function ListMessages({ description, user, time, room }) {
     <div
       className={
         unRead
-          ? "flex flex-row justify-between bg-[#ddead1]"
-          : "flex flex-row justify-between"
+          ? "flex flex-row justify-between bg-[#ddead1] hover:bg-[#87ab69] mt-2 mb-2"
+          : "flex flex-row justify-between hover:bg-gray-100 mt-2 mb-2 border border-solid border-gray-100"
       }
       onClick={() => {
         setRoom(room);

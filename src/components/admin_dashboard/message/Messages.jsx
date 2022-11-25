@@ -47,7 +47,7 @@ export default function Messages() {
 
   return (
     <div>
-      <div className="mt-2 py-1 text-sm hover:bg-gray-100 cursor-pointer">
+      <div className="mt-2 py-1 text-sm cursor-pointer">
         {rooms.length > 0 ? (
           //Display the messages sort first before map to display it as sorted by
           <div>
