@@ -9,7 +9,7 @@ import {
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useAuth } from "../../context/AuthContext";
 import { db } from "../../firebase/firebase";
@@ -17,9 +17,10 @@ import ListMessage from "./ListMessage";
 import { v4 as uuid } from "uuid";
 
 function Message() {
-  const { setIsOpen, currentUser, room } = useAuth();
+  const { setIsOpen, currentUser, room, userB } = useAuth();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const bottomRef = useRef(null);
 
   const senderUser = {
     name: currentUser.displayName,
@@ -46,7 +47,6 @@ function Message() {
 
   //Use to display the new message to the user
   //Use spreed in messages because of empty declaration
-  //possible solution [...previousMessages, ...messages]
   const appendMessages = useCallback((messages) => {
     setMessages((previousMessages) => [...previousMessages, ...messages]);
   }, []);
@@ -70,23 +70,33 @@ function Message() {
               : message.createdAt.toDate(),
           };
         })
-        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+        .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
       //Call the function that displays the message
       appendMessages(messagesFirestore);
     });
     return () => unsubscribe();
   }, [appendMessages, roomId]);
 
+  useEffect(() => {
+    // scroll to bottom every time messages change
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+
+    if (messages.length !== 0) {
+      //To add the last message
+      const roomRef = doc(db, "rooms", roomId);
+      const lastMessage = messages[messages.length - 1];
+      (async () => {
+        await updateDoc(roomRef, {
+          lastMessage,
+        });
+      })();
+    }
+  }, [messages, roomId, currentUser.email, room?.readReceipt]);
+
   async function onSend() {
     const unique_id = uuid();
-    const roomRef = doc(db, "rooms", roomId);
     const roomMessagesRef = collection(db, "rooms", roomId, "messages");
     //To delete the other user from readReceipt after sending message
-    const userB =
-      room?.readReceipt[0] === currentUser.email
-        ? room?.readReceipt[1]
-        : room?.readReceipt[0];
-
     await addDoc(roomMessagesRef, {
       _id: unique_id,
       text: input,
@@ -94,12 +104,17 @@ function Message() {
       createdAt: serverTimestamp(),
     });
     setInput("");
-    const lastMessage = messages[messages.length - 1];
+    const roomRef = doc(db, "rooms", roomId);
+    const userB =
+      room?.readReceipt[0] === currentUser.email
+        ? room?.readReceipt[1]
+        : room?.readReceipt[0];
+
     await updateDoc(roomRef, {
-      lastMessage,
       readReceipt: arrayRemove(userB ? userB : " "),
     });
   }
+
   return (
     <div className="bg-white flex flex-col fixed bottom-1 right-10 lg:right-20 h-[400px] w-[320px] justify-between">
       <div className="flex flex-col overflow-hidden ">
@@ -107,10 +122,10 @@ function Message() {
           <div className="items-center flex justify-center gap-5 ">
             <img
               className="object-scale-down h-10 w-10"
-              src={currentUser.photoURL}
+              src={userB.photoURL}
               alt=""
             />
-            <h1 className="text-18">{currentUser.displayName}</h1>
+            <h1 className="text-18">{userB.displayName}</h1>
           </div>
           <div
             onClick={() => setIsOpen(false)}
@@ -124,6 +139,8 @@ function Message() {
             messages.map((message) => (
               <ListMessage key={message._id} message={message} />
             ))}
+
+          <span ref={bottomRef}></span>
         </main>
       </div>
       <form className="h-14 w-full max-w-[728px] flex bsolute bottom-0">

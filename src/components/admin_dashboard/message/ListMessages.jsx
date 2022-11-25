@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 
 function ListMessages({ description, user, time, room }) {
-  const [unread, setUnRead] = useState(true);
-  const { currentUser, setIsOpen, setRoom } = useAuth();
+  const [unRead, setUnRead] = useState(true);
+  const { currentUser, setIsOpen, setRoom, setUserB } = useAuth();
 
   //To chech if the user already read the message
   useEffect(() => {
@@ -16,10 +16,15 @@ function ListMessages({ description, user, time, room }) {
 
   return (
     <div
-      className="flex flex-row justify-between"
+      className={
+        unRead
+          ? "flex flex-row justify-between bg-[#ddead1]"
+          : "flex flex-row justify-between"
+      }
       onClick={() => {
         setRoom(room);
         setIsOpen(true);
+        setUserB(user);
       }}
     >
       <div className="flex flex-col justify-center">

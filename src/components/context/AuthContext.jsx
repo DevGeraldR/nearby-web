@@ -81,6 +81,7 @@ export function AuthProvider({ children }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [room, setRoom] = useState(null);
+  const [userB, setUserB] = useState(null);
   const value = {
     currentUser,
     signIn,
@@ -88,6 +89,8 @@ export function AuthProvider({ children }) {
     room,
     setRoom,
     setIsOpen,
+    userB,
+    setUserB,
     signUp,
     logOut,
     authenticating,

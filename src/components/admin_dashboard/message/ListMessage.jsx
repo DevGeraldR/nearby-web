@@ -6,8 +6,8 @@ function ListMessage({ message }) {
 
   const messageClass =
     message.user.name === currentUser.displayName
-      ? "bg-[#395dff] text-white flex-row-reverse text-end float-right rounded-full"
-      : "bg-[#e5e5ea] text-black float-left rounded-full";
+      ? "bg-[#395dff] text-white flex-row-reverse text-end float-right rounded-full m-2"
+      : "bg-[#e5e5ea] text-black float-left rounded-full m-2";
 
   return (
     <div>
