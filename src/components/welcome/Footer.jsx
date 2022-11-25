@@ -54,7 +54,7 @@ const Footer = () => {
           <h6 className="font-medium">Contact</h6>
           <ul>
             <li className="py-2 text-sm">+639065730375</li>
-            <li className="py-2 text-sm">romerogerald22@gmail.com</li>
+            <li className="py-2 text-sm">nearby@gmail.com</li>
           </ul>
         </div>
       </div>
