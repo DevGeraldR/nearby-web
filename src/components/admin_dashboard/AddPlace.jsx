@@ -1,5 +1,5 @@
 import { doc, setDoc } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/firebase";
 
@@ -18,7 +18,8 @@ function AddPlace() {
   const { currentUser } = useAuth();
   // For photo: Not implemented yet
   const [photo] = useState("");
-  const [placeName, setPlaceName] = useState("");
+  const [placeName, setPlaceName] = useState("Place");
+  const scroll = useRef(null);
 
   useEffect(() => {
     if (!geolocationAPI) {
@@ -44,8 +45,9 @@ function AddPlace() {
   //To add the hospital in the database
   const addPlace = async () => {
     // To check if the admin selected a place
-    if (placeName === "") {
+    if (placeName === "Place") {
       alert("Please select a place");
+      scroll.current?.scrollIntoView({ behavior: "smooth" });
       return;
     }
     //To send the hospital information in our database
@@ -74,17 +76,70 @@ function AddPlace() {
 
   return (
     <div className="flex h-full w-full justify-center">
+      <span ref={scroll}></span>
       <form className="md:w-[400px] m-2 lg:w-[800px] max-w-[800px] justify-center">
         <h2 className="text-2xl font-bold text-center">Add Place</h2>
-        <div
-          className="flex flex-row gap-2"
-          onChange={(event) => setPlaceName(event.target.value)}
-        >
-          <input type="radio" value="Hospital" name="place" />
-          <span>Hospital</span>
-          <input type="radio" value="Jeepney" name="place" />
-          <span>Jeepney</span>
+        <div className="mt-2">
+          <label>
+            Select a place:
+            <select
+              value={placeName}
+              onChange={(event) => setPlaceName(event.target.value)}
+              className={
+                placeName === "Place"
+                  ? "ml-2 border border-solid border-gray-400 text-gray-400 p-1 bg-white"
+                  : "ml-2 border border-solid border-black p-1 bg-white"
+              }
+            >
+              <option value="Place" className="text-gray-400">
+                Place
+              </option>
+              <option value="Hospital" className="text-black">
+                Hospital
+              </option>
+              <option value="Gym" className="text-black">
+                Gym
+              </option>
+              <option value="Clinic" className="text-black">
+                Clinic
+              </option>
+              <option value="Vet" className="text-black">
+                Vet
+              </option>
+              <option value="Taxi" className="text-black">
+                Taxi
+              </option>
+              <option value="Jeep" className="text-black">
+                Jeep
+              </option>
+              <option value="Bus" className="text-black">
+                Bus
+              </option>
+              <option value="Restaurant" className="text-black">
+                Restaurant
+              </option>
+              <option value="Fast Food" className="text-black">
+                Fast Food
+              </option>
+              <option value="Lomihan" className="text-black">
+                Lomihan
+              </option>
+              <option value="Pancitan" className="text-black">
+                Pancitan
+              </option>
+              <option value="Yelo" className="text-black">
+                Yelo
+              </option>
+              <option value="Ice Tubig" className="text-black">
+                Ice Tubig
+              </option>
+              <option value="Ice Cube" className="text-black">
+                Ice Cube
+              </option>
+            </select>
+          </label>
         </div>
+
         <div className="flex flex-col py-2">
           <label>Name</label>
           <input

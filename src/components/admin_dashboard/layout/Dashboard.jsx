@@ -17,8 +17,8 @@ function Dashboard() {
         <div className="flex-1 p-2 overflow-auto">
           <Outlet />
         </div>
+        {isOpen && <Message />}
       </div>
-      {isOpen && <Message />}
     </div>
   );
 }

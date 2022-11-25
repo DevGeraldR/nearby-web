@@ -12,8 +12,8 @@ const Ads = () => {
             Help customers find your business
           </h1>
           <p>
-            Nearby will be the most largest navigation app in the Phillipines.
-            We aim to guide your customers to find your location
+            Nearby is a navigation app that will help your customers find your
+            location. We aim to guide your customers to you.
           </p>
           <Link to="/signin">
             <button className="bg-black text-[#00dfad] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3 hover:bg-[#4a4a4a]">

@@ -56,7 +56,7 @@ export default function Sidebar() {
       <div
         className={
           openSideBar
-            ? "bg-black h-screen w-60 fixed left-0 top-0 md:hidden flex flex-col ease-in-out duration-500"
+            ? "z-10 bg-black h-screen w-60 fixed left-0 top-0 md:hidden flex flex-col ease-in-out duration-500"
             : "fixed left-[-100%]"
         }
       >

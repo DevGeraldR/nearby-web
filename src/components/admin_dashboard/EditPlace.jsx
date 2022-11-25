@@ -113,13 +113,13 @@ function EditPlace() {
             onChange={(event) => setProvince(event.target.value)}
           />
         </div>
-        <div className="flex gap-2 justify-center">
+        <div className="flex gap-2 flex-col md:flex-row justify-center items-center p-5">
           <button
             onClick={(e) => {
               e.preventDefault();
               handleClickUpdateDocuments();
             }}
-            className="w-[200px] my-5 py-2 bg-[#00dfad] font-semibold rounded-lg"
+            className="w-[200px] py-2 bg-[#00dfad] font-semibold rounded-lg"
           >
             Update Documents
           </button>
@@ -128,7 +128,7 @@ function EditPlace() {
               e.preventDefault();
               handleClickUpdateLocation();
             }}
-            className="w-[200px] my-5 py-2 border border-solid border-black text-[#00dfad] font-semibold rounded-lg"
+            className="w-[200px] py-2 border border-solid border-black text-[#00dfad] font-semibold rounded-lg"
           >
             Update GPS Location
           </button>
