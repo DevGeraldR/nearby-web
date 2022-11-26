@@ -1,5 +1,5 @@
 import { doc, setDoc } from "firebase/firestore";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/firebase";
 
@@ -21,7 +21,7 @@ function AddPlace() {
   const [placeName, setPlaceName] = useState("Place");
   const scroll = useRef(null);
 
-  useEffect(() => {
+  const getLocation = useCallback(() => {
     if (!geolocationAPI) {
       alert("Geolocation API is not available in your browser!");
     } else {
@@ -32,15 +32,19 @@ function AddPlace() {
           setLong(coords.longitude);
         },
         (error) => {
-          alert(error);
+          console.log(error.message);
         }
       );
     }
+  }, [geolocationAPI]);
+
+  useEffect(() => {
+    getLocation();
     if (currentUser) {
       setAdminName(currentUser.displayName);
       setAdminEmail(currentUser.email);
     }
-  }, [currentUser, geolocationAPI]);
+  }, [currentUser, getLocation]);
 
   //To add the hospital in the database
   const addPlace = async () => {
@@ -48,6 +52,10 @@ function AddPlace() {
     if (placeName === "Place") {
       alert("Please select a place");
       scroll.current?.scrollIntoView({ behavior: "smooth" });
+      return;
+    } else if (lat === null || long === null) {
+      alert("No location found, Please allow access to location");
+      getLocation();
       return;
     }
     //To send the hospital information in our database
@@ -68,16 +76,30 @@ function AddPlace() {
         photoURL:
           photo || "https://cdn-icons-png.flaticon.com/512/1527/1527531.png",
       });
-      alert("Displayed Succesfully");
+      alert("Added Succesfully");
+      setPlaceName("Place");
+      setName("");
+      setEmail("");
+      setContactNumber("");
+      setStreet("");
+      setCity("");
+      setProvince("");
     } catch (e) {
-      console.error("Error adding document: ", e);
+      alert("Failed to add location, Please try again");
     }
+    scroll.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="flex h-full w-full justify-center">
       <span ref={scroll}></span>
-      <form className="md:w-[400px] m-2 lg:w-[800px] max-w-[800px] justify-center">
+      <form
+        className="md:w-[400px] m-2 lg:w-[800px] max-w-[800px] justify-center"
+        onSubmit={(e) => {
+          e.preventDefault();
+          addPlace();
+        }}
+      >
         <h2 className="text-2xl font-bold text-center">Add Place</h2>
         <div className="mt-2">
           <label>
@@ -147,6 +169,7 @@ function AddPlace() {
             type="text"
             value={name}
             onChange={(event) => setName(event.target.value)}
+            required
           />
         </div>
         <div className="flex flex-col py-2">
@@ -156,6 +179,7 @@ function AddPlace() {
             type="text"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
+            required
           />
         </div>
         <div className="flex flex-col py-2">
@@ -165,6 +189,7 @@ function AddPlace() {
             type="text"
             value={contactNumber}
             onChange={(event) => setContactNumber(event.target.value)}
+            required
           />
         </div>
         <div className="flex flex-col py-2">
@@ -196,10 +221,7 @@ function AddPlace() {
         </div>
         <div className="text-center">
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              addPlace();
-            }}
+            type="submit"
             className="w-[200px] my-5 py-2 bg-[#00dfad] font-semibold rounded-lg"
           >
             Add

@@ -15,18 +15,18 @@ const Navbar = () => {
         <h1 className="w-full text-3xl font-bold">NEARBY</h1>
         <ul className="hidden md:flex">
           <li>
-            <a
+            <Link
               className="m-4 p-2 border-b border-b-solid border-b-[3px] border-b-[#ebf2f3] hover:border-b-[#00dfad]"
-              href="/signup"
+              to="/signup"
             >
               Signup
-            </a>
-            <a
+            </Link>
+            <Link
               className="bg-black text-[#00dfad] w-[200px] rounded-full font-medium my-6 mx-auto md:mx-0 hover:bg-[#4a4a4a] py-4 px-8"
-              href="/signin"
+              to="/signin"
             >
               Signin
-            </a>
+            </Link>
           </li>
         </ul>
         <div onClick={handleNav} className="md:hidden cursor-pointer pb-1">
@@ -47,18 +47,18 @@ const Navbar = () => {
             <span className="px-1 text-red-600 font-bold">FREE</span>
           </h1>
           <li className="pt-10">
-            <a
+            <Link
               className="m-4 p-2 border-b border-b-solid border-b-[3px] border-b-black hover:border-b-[#00dfad]"
-              href="/signup"
+              to="/signup"
             >
               Signup
-            </a>
-            <a
+            </Link>
+            <Link
               className="bg-[#4a4a4a] text-[#00dfad] hover:text-white w-[200px] rounded-full font-medium my-6 mx-auto md:mx-0 hover:bg-[#00dfad] py-4 px-8"
-              href="/signin"
+              to="/signin"
             >
               Signin
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

@@ -30,7 +30,7 @@ function AddAdmin() {
     const adminRef = doc(db, "Requesting Admins", email);
     await deleteDoc(adminRef);
 
-    alert("Admins sucessfully added");
+    alert("Admin sucessfully added");
   };
 
   useEffect(() => {
