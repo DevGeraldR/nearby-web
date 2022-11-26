@@ -20,7 +20,10 @@ function Signin() {
   };
 
   return (
-    <div className="bg-[#ebf2f3] flex h-screen w-full justify-center">
+    <div className="bg-[#ebf2f3] flex flex-col h-screen w-full justify-center">
+      <Link to="/welcome">
+        <h1 className="text-3xl font-bold text-[#00dfad] p-5">NEARBY</h1>
+      </Link>
       <div className="flex flex-col m-auto">
         <form className="max-w-[400px] w-full mx-auto rounded-lg border-solid border-2 border-black p-8 px-8">
           <h2 className="text-4xl font-bold text-center">SIGN IN</h2>
