@@ -8,13 +8,13 @@ const Hero = () => {
       <h1 className="md:text-7xl sm:text-6xl text-4xl font-bold md:py-6">
         Grow your business
       </h1>
-      <p className="md:text-2xl text-xl">
+      <p className="md:text-2xl text-xl max-w-[800px] mx-auto p-5 md:p-0">
         Improve revenue by adding your business in Neaby app. Connect your
         business to the customers
       </p>
       <Link to="/signin">
         <button className="bg-[#00dfad] w-[200px] rounded-md font-medium my-6 mx-auto py-3 hover:bg-[#00df9a]">
-          Get Started
+          Get started
         </button>
       </Link>
     </div>

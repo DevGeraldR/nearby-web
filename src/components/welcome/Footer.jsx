@@ -16,10 +16,10 @@ const Footer = () => {
           <input
             className="p-3 m-2 flex w-full rounded-md border"
             type="email"
-            placeholder="Enter Email"
+            placeholder="Enter email"
           />
           <button className="bg-[#00dfad] w-[200px] rounded-md font-medium my-6 mx-auto py-3 hover:bg-[#00df9a]">
-            Notify Me
+            Notify me
           </button>
         </div>
         <div className="flex md:w-[75%] my-6">
