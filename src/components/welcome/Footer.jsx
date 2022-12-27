@@ -3,7 +3,7 @@ import { FaFacebookSquare, FaInstagram, FaTwitterSquare } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="bg-[#ebf2f3] max-w-[1240px] mx-auto py-16 px-4 grid lg:grid-cols-2 gap-8">
+    <div className="bg-[#ebf2f3] w-full mx-auto py-16 px-4 grid lg:grid-cols-2 gap-8">
       <div>
         <h1 className="w-full text-3xl font-bold">NEARBY</h1>
         <div className="lg:col-span-2 my-4">

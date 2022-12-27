@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <div className="flex flex-col bg-[#ebf2f3]">
-      <div className="flex w-full justify-between items-center h-20 max-w-[1240px] mx-auto px-4">
+      <div className="flex w-full justify-between items-center h-20 w-full mx-auto px-4">
         <h1 className="w-full text-3xl font-bold">NEARBY</h1>
         <ul className="hidden md:flex">
           <li>
