@@ -9,12 +9,12 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAG920A50-1m4L-o-53rYCrgLXwVDbbGJk",
-  authDomain: "nearest-54654.firebaseapp.com",
-  projectId: "nearest-54654",
-  storageBucket: "nearest-54654.appspot.com",
-  messagingSenderId: "676197603125",
-  appId: "1:676197603125:web:35ed54b6d271ab34cede7c",
+  apiKey: "PutYourOwnFirebaseConfig",
+  authDomain: "PutYourOwnFirebaseConfig",
+  projectId: "PutYourOwnFirebaseConfig",
+  storageBucket: "PutYourOwnFirebaseConfig",
+  messagingSenderId: "PutYourOwnFirebaseConfig",
+  appId: "PutYourOwnFirebaseConfig",
 };
 
 let app;
